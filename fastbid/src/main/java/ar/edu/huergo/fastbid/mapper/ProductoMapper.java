@@ -2,6 +2,7 @@ package ar.edu.huergo.fastbid.mapper;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import ar.edu.huergo.fastbid.dto.ProductoDTO;
 import ar.edu.huergo.fastbid.entity.Producto;
@@ -9,7 +10,7 @@ import ar.edu.huergo.fastbid.entity.Producto;
 public class ProductoMapper {
 
     // Entity → DTO
-    public static ProductoDTO toDto(Producto producto) {
+    public ProductoDTO toDto(Producto producto) {
         if (producto == null) {
             return null;
         }
@@ -33,7 +34,7 @@ public class ProductoMapper {
         );
     }
 
-    public static Producto toEntity(ProductoDTO dto) {
+    public Producto toEntity(ProductoDTO dto) {
         if (dto == null) {
             return null;
         }
@@ -58,23 +59,11 @@ public class ProductoMapper {
         return producto;
     }
 
-    public static List<ProductoDTO> toDtoList(List<Producto> productos) {
-        List<ProductoDTO> dtos = new ArrayList<>();
-        if (productos != null) {
-            for (Producto p : productos) {
-                dtos.add(toDto(p));
-            }
+    public List<ProductoDTO> toDtoList(List<Producto> productos) {
+        if (productos == null) {
+            return new ArrayList<>();
         }
-        return dtos;
+        return productos.stream().map(this::toDto).collect(Collectors.toList());
     }
 
-    public static List<Producto> toEntityList(List<ProductoDTO> dtos) {
-        List<Producto> entities = new ArrayList<>();
-        if (dtos != null) {
-            for (ProductoDTO dto : dtos) {
-                entities.add(toEntity(dto));
-            }
-        }
-        return entities;
-    }
 }
