@@ -14,6 +14,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
@@ -36,7 +37,7 @@ public class Producto {
     @Size(min = 2, max = 100, message = "El nombre debe tener entre 2 y 100 caracteres")
     private String nombre;
 
-    @Size(max = 1000, message = "La descripción no puede superar 1000 caracteres")
+    @Size(max = 250, message = "La descripcion no puede superar 1000 caracteres")
     private String descripcion;
 
     @Positive(message = "El precio inicial debe ser mayor a 0")
@@ -45,6 +46,7 @@ public class Producto {
     @ElementCollection
     @CollectionTable(name = "producto_imagenes", joinColumns = @JoinColumn(name = "producto_id"))
     @Column(name = "imagen_url")
+    @NotEmpty(message = "Imagen es obligatorio")
     private List<String> imagenes;
 
     @NotNull(message = "La categoría es obligatoria")

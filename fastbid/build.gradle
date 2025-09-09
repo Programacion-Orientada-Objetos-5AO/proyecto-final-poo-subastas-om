@@ -45,7 +45,7 @@ implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
 	testImplementation 'org.springframework.security:spring-security-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 
-	// testImplementation 'com.h2database:h2'
+	//testImplementation 'com.h2database:h2'
 }
 
 tasks.named('test') {

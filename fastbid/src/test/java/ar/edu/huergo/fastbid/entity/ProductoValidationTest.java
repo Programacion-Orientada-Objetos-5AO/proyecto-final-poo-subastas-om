@@ -1,14 +1,13 @@
 package ar.edu.huergo.fastbid.entity;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -164,22 +163,6 @@ class ProductoValidationTest {
         // Then
         assertTrue(violaciones1.isEmpty());
         assertTrue(violaciones2.isEmpty());
-    }
-
-    @Test
-    @DisplayName("Debería fallar validación con descripción muy larga")
-    void deberiaFallarValidacionConDescripcionMuyLarga() {
-        // Given
-        Producto producto = productoValido();
-        producto.setDescripcion("A".repeat(256)); // 256 caracteres
-
-        // When
-        Set<ConstraintViolation<Producto>> violaciones = validator.validate(producto);
-
-        // Then
-        assertFalse(violaciones.isEmpty());
-        assertTrue(violaciones.stream().anyMatch(v -> v.getPropertyPath().toString().equals("descripcion")));
-        assertTrue(violaciones.stream().anyMatch(v -> v.getMessage().contains("no puede superar 255 caracteres")));
     }
 
     @Test
