@@ -1,4 +1,4 @@
-package ar.edu.huergo.fastbid.controller.producto;
+package ar.edu.huergo.fastbid.controller;
 
 import java.net.URI;
 import java.util.List;
@@ -26,7 +26,7 @@ import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/productos")
-public class productoController {
+public class ProductoController {
 
     @Autowired
     private ProductoService productoService;
