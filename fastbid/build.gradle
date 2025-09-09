@@ -27,6 +27,9 @@ implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
 	//Nueva dependencia para seguridad
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 
+	// implementation 'org.postgresql:postgresql'
+	runtimeOnly 'com.h2database:h2'
+
 	// JWT
 	implementation 'io.jsonwebtoken:jjwt-api:0.12.5'
 	runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.12.5'
@@ -37,10 +40,12 @@ implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
 	annotationProcessor 'org.projectlombok:lombok'
 	testCompileOnly 'org.projectlombok:lombok'
 	testAnnotationProcessor 'org.projectlombok:lombok'
-	runtimeOnly 'com.h2database:h2'
+	
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+	// testImplementation 'com.h2database:h2'
 }
 
 tasks.named('test') {

@@ -18,7 +18,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import ar.edu.huergo.fastbid.dto.ProductoDTO;
 import ar.edu.huergo.fastbid.entity.Producto;
 import ar.edu.huergo.fastbid.mapper.ProductoMapper;
-import ar.edu.huergo.fastbid.service.productoService;
+import ar.edu.huergo.fastbid.service.ProductoService;
 import jakarta.validation.Valid;
 
 
@@ -29,7 +29,7 @@ import jakarta.validation.Valid;
 public class productoController {
 
     @Autowired
-    private productoService productoService;
+    private ProductoService productoService;
 
     @Autowired
     private ProductoMapper productoMapper;

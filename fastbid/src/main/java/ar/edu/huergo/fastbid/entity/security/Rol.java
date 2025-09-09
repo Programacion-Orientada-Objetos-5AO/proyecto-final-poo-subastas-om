@@ -28,5 +28,3 @@ public class Rol {
         this.nombre = nombre;
     }
 }
-
-

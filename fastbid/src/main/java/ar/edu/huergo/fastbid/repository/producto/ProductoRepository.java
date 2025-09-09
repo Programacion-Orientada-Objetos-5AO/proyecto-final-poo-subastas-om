@@ -1,4 +1,4 @@
-package ar.edu.huergo.fastbid.repository;
+package ar.edu.huergo.fastbid.repository.producto;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import ar.edu.huergo.fastbid.entity.Producto;
 
 @Repository
-public interface productoRepository extends JpaRepository<Producto, Long> {
+public interface ProductoRepository extends JpaRepository<Producto, Long> {
 
 }

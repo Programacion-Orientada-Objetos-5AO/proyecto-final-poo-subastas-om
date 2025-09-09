@@ -6,12 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ar.edu.huergo.fastbid.entity.Producto;
-import ar.edu.huergo.fastbid.repository.productoRepository;
+import ar.edu.huergo.fastbid.repository.producto.ProductoRepository;
 
 @Service
-public class productoService {
+public class ProductoService {
     @Autowired
-    private productoRepository productoRepository;
+    private ProductoRepository productoRepository;
 
     public List<Producto> obtenerProductos() {
         return productoRepository.findAll();
