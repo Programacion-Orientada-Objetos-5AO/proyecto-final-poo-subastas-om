@@ -1,4 +1,4 @@
-package ar.edu.huergo.fastbid.controller;
+package ar.edu.huergo.fastbid.controller.producto;
 
 import java.net.URI;
 import java.util.List;
