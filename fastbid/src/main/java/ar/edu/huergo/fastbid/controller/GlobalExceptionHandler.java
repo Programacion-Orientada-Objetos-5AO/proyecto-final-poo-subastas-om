@@ -1,11 +1,14 @@
 package ar.edu.huergo.fastbid.controller;
 
 import java.net.URI;
+import java.time.format.DateTimeParseException;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -13,7 +16,10 @@ import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import com.fasterxml.jackson.databind.exc.InvalidFormatException;
+
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.ConstraintViolationException;
 import lombok.extern.slf4j.Slf4j;
 
@@ -119,7 +125,28 @@ public class GlobalExceptionHandler {
         return problem;
     }
 
-    
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    public ProblemDetail handleHttpMessageNotReadable(HttpMessageNotReadableException ex) {
+        Throwable rootCause = ex.getMostSpecificCause();
+
+        String detail;
+        if (rootCause instanceof DateTimeParseException) {
+            detail = "El formato de fecha es inválido. Usa 'yyyy-MM-ddTHH:mm:ss' (ej: 2025-09-11T21:00:00)";
+        } else if (rootCause instanceof InvalidFormatException) {
+            detail = "El valor enviado tiene un formato inválido: " + rootCause.getMessage();
+        } else {
+            detail = "El cuerpo de la petición es inválido o está malformado";
+        }
+
+        ProblemDetail problem = ProblemDetail.forStatus(HttpStatus.BAD_REQUEST);
+        problem.setTitle("Solicitud inválida");
+        problem.setDetail(detail);
+        problem.setType(URI.create("https://http.dev/problems/invalid-request"));
+
+        log.error("Error de parseo de request: {}", ex.getMessage(), ex);
+
+        return problem;
+    }
 }
 
 
