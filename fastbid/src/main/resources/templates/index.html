@@ -1,0 +1,33 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>FastBid — Inicio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body{font-family:system-ui;background:#0b1220;color:#e8ecf1;margin:0}
+    header{display:flex;justify-content:space-between;align-items:center;padding:14px 20px;background:#121a2b}
+    main{max-width:960px;margin:24px auto;padding:0 16px}
+    form{margin:0}
+    button{padding:8px 12px;border:0;border-radius:8px;background:#2e7df6;color:#fff;font-weight:600;cursor:pointer}
+  </style>
+</head>
+<body>
+  <header>
+    <div>FastBid</div>
+    <div>
+      Hola, <strong th:text="${usuario}">usuario</strong>
+      <form th:action="@{/logout}" method="post" style="display:inline">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+        <button type="submit">Salir</button>
+      </form>
+    </div>
+  </header>
+
+  <main>
+    <h1>Bienvenido/a</h1>
+    <p>Acá va tu dashboard, listado de subastas, etc.</p>
+  </main>
+</body>
+</html>
