@@ -32,7 +32,7 @@ public class Subasta {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idSubasta;
 
-    @Column(nullable = false)
+    @Column(name = "producto_id", nullable = false)
     private Long productoId;     // FK → Producto.id (único: 1–a–1)
 
     @Column(nullable = false)
