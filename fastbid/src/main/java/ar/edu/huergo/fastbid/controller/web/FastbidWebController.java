@@ -1,6 +1,5 @@
 package ar.edu.huergo.fastbid.controller.web;
 
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
@@ -45,10 +44,10 @@ public class FastbidWebController {
      *   templates/index.html
      */
     @GetMapping({"/", "/index"})
-    public String index(Model model, Authentication auth) {
-        String usuario = (auth != null) ? auth.getName() : "invitado";
-        model.addAttribute("usuario", usuario);
-        model.addAttribute("titulo", "FastBid — Inicio");
+        public String index(HttpServletRequest req, Model model) {
+        var principal = req != null ? req.getUserPrincipal() : null;
+        model.addAttribute("isAuth", principal != null);
+        model.addAttribute("username", principal != null ? principal.getName() : null);
         return "index";
     }
 
