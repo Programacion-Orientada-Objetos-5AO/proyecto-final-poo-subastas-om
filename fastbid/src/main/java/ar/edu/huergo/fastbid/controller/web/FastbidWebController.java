@@ -18,10 +18,6 @@ public class FastbidWebController {
 
     /**
      * Página de login (form Thymeleaf).
-     * - Muestra mensajes si viene ?error o ?logout.
-     * - El POST lo procesa Spring Security en /login (ver SecurityConfig).
-     * Templates esperados:
-     *   templates/login.html
      */
     @GetMapping("/login")
     public String login(@RequestParam(value = "error", required = false) String error,
@@ -34,7 +30,7 @@ public class FastbidWebController {
         if (logout != null) {
             model.addAttribute("success", "Sesión cerrada correctamente.");
         }
-        return "login";
+        return "auth/login";
     }
 
     /**

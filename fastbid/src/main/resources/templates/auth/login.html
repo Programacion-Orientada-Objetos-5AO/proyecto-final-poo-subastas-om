@@ -16,13 +16,13 @@
   <div th:if="${error}" th:text="${error}"></div>
   <div th:if="${success}" th:text="${success}"></div>
 
-  <form th:action="@{/api/auth/login}" method="post">
+  <form th:action="@{/login}" method="post">
     <label>Usuario (email):
-      <input type="text" name="username" required autocomplete="username">
+      <input type="text" name="username" required>
     </label>
     <br>
     <label>Contraseña:
-      <input type="password" name="password" required autocomplete="password">
+      <input type="password" name="password" required>
     </label>
     <br>
     <button type="submit">Entrar</button>

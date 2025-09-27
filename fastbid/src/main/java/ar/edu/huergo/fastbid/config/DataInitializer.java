@@ -5,6 +5,7 @@ import java.util.Set;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import ar.edu.huergo.fastbid.entity.security.Rol;
@@ -14,6 +15,7 @@ import ar.edu.huergo.fastbid.repository.security.UsuarioRepository;
 import ar.edu.huergo.fastbid.util.PasswordValidator;
 
 @Configuration
+@EnableMethodSecurity
 public class DataInitializer {
 
     @Bean
